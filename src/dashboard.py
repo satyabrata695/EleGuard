@@ -7,14 +7,20 @@ Run command:
 """
 
 from __future__ import annotations
+import sys
+from pathlib import Path
+
+# Ensure project root is in sys.path
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
 import tempfile
 import time
-from pathlib import Path
 from typing import Any, Dict, List, Optional
 import cv2
 import numpy as np
 import pandas as pd
-import streamlit as st
 
 from src.alerts import Alert, AlertManager
 from src.core.frame_info import FrameInfo
@@ -39,9 +45,25 @@ class Dashboard:
         self.title = title
         self.page_icon = page_icon
         self.layout = layout
+        self._st = None
+
+    def _get_st(self):
+        """Import streamlit lazily."""
+        if self._st is None:
+            try:
+                import streamlit as st
+                self._st = st
+            except ImportError as exc:
+                raise ImportError(
+                    "Streamlit is required to launch the web dashboard.\n"
+                    "Install it using: pip install streamlit\n"
+                    "Then run: streamlit run src/dashboard.py"
+                ) from exc
+        return self._st
 
     def render_app(self) -> None:
         """Render the complete Streamlit web dashboard."""
+        st = self._get_st()
         st.set_page_config(
             page_title=self.title,
             page_icon=self.page_icon,
@@ -69,7 +91,7 @@ class Dashboard:
         st.sidebar.image("https://img.icons8.com/color/96/000000/elephant.png", width=70)
         st.sidebar.title("Model & Controls")
 
-        root_dir = Path(__file__).resolve().parent.parent
+        root_dir = PROJECT_ROOT
         weights_dir = root_dir / "weights"
         available_weights = [str(p.relative_to(root_dir)) for p in weights_dir.glob("*.pt")] if weights_dir.exists() else []
         if not available_weights:

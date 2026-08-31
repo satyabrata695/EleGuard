@@ -12,8 +12,14 @@ Usage Examples:
 from __future__ import annotations
 import argparse
 import sys
-import time
 from pathlib import Path
+
+# Ensure project root is in sys.path
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+import time
 from typing import Optional, Union
 import cv2
 
@@ -188,7 +194,7 @@ def create_parser() -> argparse.ArgumentParser:
 
 
 def main() -> int:
-    parser = create_parser()
+    parser = create_argument_parser() if "create_argument_parser" in globals() else create_parser()
     args = parser.parse_args()
 
     src = int(args.source) if args.source.isdigit() else args.source
