@@ -1,0 +1,81 @@
+# =========================================================
+# Byte-compiled / optimized / DLL files
+# =========================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+
+# =========================================================
+# Virtual Environment
+# =========================================================
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# =========================================================
+# IDE & OS
+# =========================================================
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =========================================================
+# Large Model Weights & Checkpoints (>100MB / Git Bloat)
+# =========================================================
+weights/*.pt
+weights/*.pth
+weights/*.onnx
+weights/*.engine
+*.pt
+*.pth
+*.onnx
+*.engine
+runs/
+models/*
+!models/.gitkeep
+
+# =========================================================
+# Datasets & Large Media (>100MB / Git Bloat)
+# =========================================================
+data/train/
+data/valid/
+data/test/
+data/videos/*
+data/*.cache
+*.cache
+
+# =========================================================
+# Outputs & Logs
+# =========================================================
+outputs/images/*
+outputs/videos/*
+outputs/*.jpg
+outputs/*.png
+outputs/*.mp4
+logs/*.log
+logs/*.csv
+!logs/.gitkeep
+!outputs/.gitkeep
+
+# =========================================================
+# Testing & Jupyter
+# =========================================================
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+*.ipynb
+
+# =========================================================
+# Environment variables & secrets
+# =========================================================
+.env
+.env.*
