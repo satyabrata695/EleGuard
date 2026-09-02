@@ -12,9 +12,8 @@ import argparse
 import shutil
 import sys
 import time
-from datetime import datetime
 from pathlib import Path
-from typing import Optional
+from typing import Optional, Union
 import torch
 from ultralytics import RTDETR
 
@@ -134,6 +133,7 @@ class ElephantRTDETRTrainer:
             pretrained=True,
             amp=True,
             seed=self.seed,
+            resume=self.resume,
             save=True,
             val=True,
             plots=True,
@@ -166,6 +166,7 @@ def create_parser() -> argparse.ArgumentParser:
     parser.add_argument("--patience", type=int, default=15, help="Early stopping patience")
     parser.add_argument("--device", type=str, default="auto", help="Device: auto, cuda, cpu")
     parser.add_argument("--name", type=str, default="elephant_rtdetr", help="Training run name")
+    parser.add_argument("--seed", type=int, default=42, help="Random seed for reproducibility")
     parser.add_argument("--resume", action="store_true", help="Resume from last checkpoint")
     return parser
 
@@ -184,6 +185,7 @@ def main() -> int:
         patience=args.patience,
         device=args.device,
         run_name=args.name,
+        seed=args.seed,
         resume=args.resume,
     )
     try:

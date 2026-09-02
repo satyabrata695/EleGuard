@@ -18,15 +18,15 @@ import numpy as np
 import torch
 import ultralytics
 
-from src.alerts import AlertManager
-from src.camera import Camera
-from src.core.detection import Detection
-from src.core.frame_info import FrameInfo
-from src.detector import ElephantDetector
-from src.logger import Logger, get_logger
-from src.postprocessor import PostProcessor
-from src.utils import FPSCounter
-from src.visualize import Visualizer
+from backend.alerts import AlertManager
+from backend.camera import Camera
+from backend.core.detection import Detection
+from backend.core.frame_info import FrameInfo
+from backend.detector import ElephantDetector
+from backend.logger import Logger, get_logger
+from backend.postprocessor import PostProcessor
+from backend.utils import FPSCounter
+from backend.visualize import Visualizer
 
 
 class TestResult:
@@ -92,6 +92,10 @@ class DiagnosticSuite:
             _ = Visualizer()
             _ = PostProcessor()
             _ = Logger(name="test_log", console=False, file_logging=False)
+            _ = get_logger("test_diagnostics")
+            _ = FPSCounter()
+            _ = Detection(class_id=0, class_name="elephant", confidence=0.9, bbox=(0, 0, 100, 100))
+            _ = FrameInfo(frame_id=1, frame=np.zeros((10, 10, 3), dtype=np.uint8))
             return self._record("Module Imports", True, "All project modules initialized successfully.", time.perf_counter() - start)
         except Exception as exc:
             return self._record("Module Imports", False, str(exc), time.perf_counter() - start)

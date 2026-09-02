@@ -48,8 +48,8 @@ for directory in DIRECTORIES:
 # =========================================================
 # Model & Inference Settings
 # =========================================================
-MODEL_NAME = "RT-DETR-L"
-MODEL_PATH = WEIGHTS_DIR / "rtdetr-l.pt"
+MODEL_NAME = "RT-DETR-Elephant"
+MODEL_PATH = WEIGHTS_DIR / "best.pt" if (WEIGHTS_DIR / "best.pt").exists() else WEIGHTS_DIR / "rtdetr-l.pt"
 DEVICE = "auto"  # "auto", "cuda", "cpu"
 CONFIDENCE_THRESHOLD = 0.50
 IOU_THRESHOLD = 0.45
