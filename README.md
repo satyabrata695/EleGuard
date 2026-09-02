@@ -1,4 +1,4 @@
-# 🐘 RT-DETR Elephant Detection & Early Warning System
+# 🐘 Elephant Detection & Early Warning System
 
 [![Python](https://img.shields.io/badge/Python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.14-blue.svg)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-orange.svg)](https://pytorch.org/)
