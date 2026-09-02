@@ -31,14 +31,15 @@ desktop.ini
 # =========================================================
 # Large Model Weights & Checkpoints (>100MB / Git Bloat)
 # =========================================================
-weights/*.pt
 weights/*.pth
 weights/*.onnx
 weights/*.engine
-*.pt
 *.pth
 *.onnx
 *.engine
+weights/best_backup_*.pt
+!weights/best.pt
+!weights/rtdetr-l.pt
 runs/
 models/*
 !models/.gitkeep

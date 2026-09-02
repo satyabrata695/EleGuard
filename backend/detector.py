@@ -84,11 +84,12 @@ class ElephantDetector:
 
     def _load_model(self) -> RTDETR:
         """Load RT-DETR model weights, auto-downloading base model if needed."""
-        if not self.model_path.exists():
-            if self.model_path.name in ("rtdetr-l.pt", "rtdetr-x.pt", "yolo26n.pt"):
-                return RTDETR(self.model_path.name)
-            raise FileNotFoundError(f"RT-DETR model weights not found at: {self.model_path}")
-        return RTDETR(str(self.model_path))
+        if self.model_path.exists():
+            return RTDETR(str(self.model_path))
+        if self.model_path.name in ("rtdetr-l.pt", "rtdetr-x.pt", "yolo26n.pt", "yolo11n.pt"):
+            return RTDETR(self.model_path.name)
+        # Automatic fallback to standard downloadable RT-DETR checkpoint if file missing on server
+        return RTDETR("rtdetr-l.pt")
 
     def warmup(self) -> None:
         """Warm up the model with a dummy inference to eliminate cold-start latency."""
