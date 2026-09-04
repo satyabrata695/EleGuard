@@ -38,8 +38,8 @@ weights/*.engine
 *.onnx
 *.engine
 weights/best_backup_*.pt
+yolo*.pt
 !weights/best.pt
-!weights/rtdetr-l.pt
 runs/
 models/*
 !models/.gitkeep
