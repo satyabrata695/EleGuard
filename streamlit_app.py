@@ -1,8 +1,7 @@
 """
 EleGuard - AI Elephant Detection & Early Warning System
-Root Application Launcher
+Streamlit Cloud Entry Point
 """
-
 import sys
 from pathlib import Path
 
