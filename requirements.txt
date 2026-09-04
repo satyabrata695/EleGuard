@@ -1,6 +1,9 @@
-# Core Deep Learning & Vision
-torch>=2.0.0
-torchvision>=0.15.0
+# ── PyTorch CPU-only (avoids 2+ GB CUDA download that breaks Streamlit Cloud) ──
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.1.2+cpu
+torchvision==0.16.2+cpu
+
+# Core Vision & Detection
 ultralytics>=8.0.0
 opencv-python-headless>=4.8.0
 numpy>=1.24.0
