@@ -37,8 +37,9 @@ weights/*.engine
 *.pth
 *.onnx
 *.engine
-weights/best_backup_*.pt
-yolo*.pt
+weights/*.pt
+!weights/best.pt
+*.pt
 !weights/best.pt
 runs/
 models/*
